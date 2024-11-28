@@ -1,0 +1,53 @@
+.bg-nav {
+    background:  url('/static/images/bgg.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+body {
+    font-family: "Poppins", "Montserrat" ,sans-serif;
+}
+
+.nav-item{
+    margin: 0 30px;
+}
+
+.navbar-brand img {
+    max-height: 100%;
+    width: auto;     
+}
+
+.mt-14 {
+    margin-top: 18vh;
+}
+
+.card {
+    color: white;
+    border: none; 
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
+    transition: transform 0.3s; 
+    background-color: rgba(9, 0, 15, 0.85);
+}
+
+.card:hover {
+    transform: translateY(-5px); 
+}
+
+.translucent-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark translucent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    position: relative;
+    z-index: 1;
+    background-color: transparent; /* Keep header background clear */
+}

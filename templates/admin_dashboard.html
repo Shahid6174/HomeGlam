@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-size: 40px;
+            padding: 10px;
+        }
+
+        body {
+            width: 100%;
+        }
+        table {
+            background-color: pink; 
+            border: 3px solid red;
+            margin: auto;
+        }
+        table tr td {
+            border: 1px solid red;
+            text-align: center;
+            width: 50%;
+        }
+        input {
+            background-color: white;
+            color: black;
+            width: 75%;
+            text-align: center;
+        }
+        input:hover {
+            background-color: yellow;
+        }
+        button {
+            width: 75%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <tr>
+            <th colspan="4">
+                Simple Calculator
+            </th>  
+        </tr>
+        <tr>
+            <td>Value 1: </td>
+            <td><input type="number" id="value1" required></td>
+        </tr>
+        <tr>
+            <td>Value 2: </td>
+            <td><input type="number" id="value2" required></td>
+        </tr>
+        <tr>
+            <td><input type = "button" value="Addition" id="+" onclick="calculate(this.id)"></td>
+			<td><input type = "button" value="Subtraction" id="-" onclick="calculate(this.id)"></td>
+        </tr>
+        <tr>
+            <td><input type = "button" value="Multiplication" id="*" onclick="calculate(this.id)"></td>
+			<td><input type = "button" value="Division" id="/" onclick="calculate(this.id)"></td>
+        </tr>
+        <tr>
+            <td>Answer: </td>
+            <td> 
+                <input type="number" id ="answer" value="" disabled>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <input type = "button" value="Clear" onclick="cls()">
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        function calculate(id)
+        {
+            let val1 = parseFloat(document.getElementById("value1").value)
+            let val2 = parseFloat(document.getElementById("value2").value)
+            let result = 0
+            if(isNaN(val1) || isNaN(val2))
+            {
+                alert("Please enter a valid number")
+                document.getElementById("answer").value = ""
+                document.getElementById("answer").style.backgroundColor = "red"
+            }
+            else
+            {
+                if(id=='+')
+                {
+                    result = val1 + val2
+                }   
+                else if(id=='-')
+                {
+                    result = val1 - val2
+                }
+                else if(id=='*')
+                {
+                    result = val1 * val2
+                }
+                else if(id=='/')
+                {
+                    if(val2 != 0)
+                        result = val1 / val2
+                    else
+                    {
+                        alert("Can't Divide By Zero")
+                        cls()
+                        return;
+                    }
+                }
+                document.getElementById("answer").value = result
+                document.getElementById("answer").style.color = "white";
+                document.getElementById("answer").style.backgroundColor = "green";
+            }
+        }   
+        
+        function cls() {
+            document.getElementById("value1").value = "";
+            document.getElementById("value2").value = "";
+            document.getElementById("answer").value = "";
+            document.getElementById("answer").style.backgroundColor = "white";
+        }
+    </script>
+</body>
+
+</html>
