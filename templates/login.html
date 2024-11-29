@@ -44,11 +44,7 @@
             </a>
         </nav>
     </header>
-    {% if message and status %}
-    <div class="alert alert-{{ status }}" role="alert">
-        {{ message }}
-    </div>
-    {% endif %}
+
 
 
     {% if error %}
@@ -67,6 +63,11 @@
                 <!-- Right Column for Login Form -->
                 <div class="col-md-4 col-sm-12">
                     <div class="card mt-md-5 mt-3">
+                        {% if message and status %}
+                        <div class="alert alert-{{ status }}" role="alert">
+                            {{ message }}
+                        </div>
+                        {% endif %}
                         <div class="card-body" style="font-family: Montserrat;">
                             <h2>Login</h2>
                             <form action="{{ url_for('login_validation') }}" class="mt-3 form" method="post">
