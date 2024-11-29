@@ -172,8 +172,9 @@ def login_validation():
 
     user = User.query.filter_by(email=email).first()
     if user and user.check_password(password):
-        session["email"] = email
+        session["email"] = email  # Store email in session
         session["role"] = user.role  # Store user role in session
+        session["username"] = user.username  # Store username in session (for welcome message)
         session["message"] = "Login successful!"
         session["status"] = "success"
 
@@ -188,6 +189,7 @@ def login_validation():
         session["message"] = "Wrong email or password!"
         session["status"] = "danger"
         return redirect(url_for("login"))
+
 
 
 @app.route('/admin_dashboard')

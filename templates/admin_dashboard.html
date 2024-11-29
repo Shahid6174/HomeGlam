@@ -1,10 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="welcome-container">
-    <div class="welcome-message">
-        <h2>Welcome to the Admin Dashboard, {{ session['name'] }}!</h2>
-        <p>You have the control to manage users and services.</p>
-    </div>
+<div class="container mt-5 text-center">
+    <h2>Welcome to the Admin Dashboard, {{ session.get('username') }}!</h2>
+    <p>You have the control to manage users and services.</p>
 </div>
 {% endblock %}

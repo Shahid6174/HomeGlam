@@ -22,10 +22,17 @@
 
         .navbar-nav .nav-link {
             color: #fff !important;
+            font-size: 1.2rem; /* Increase font size */
+            font-weight: 600; /* Make font bolder */
+            margin-right: 20px; /* Add space between navbar items */
         }
 
         .navbar-nav .nav-link:hover {
             color: #ffd600 !important; /* Yellow on hover */
+        }
+
+        .navbar-toggler {
+            border-color: #ffd600; /* Change color of hamburger button */
         }
 
         .welcome-container {
@@ -48,10 +55,38 @@
         .navbar-brand {
             color: #ffd600 !important;
             font-weight: bold;
+            font-size: 1.5rem; /* Increase navbar brand font size */
         }
 
         .navbar-brand:hover {
             color: #fff !important;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 991px) {
+            .navbar-nav .nav-link {
+                font-size: 1rem; /* Slightly smaller font size for medium screens */
+                margin-right: 15px; /* Reduce space between navbar items */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-nav .nav-link {
+                font-size: 0.9rem; /* Smaller font size for small screens */
+                margin-right: 10px; /* Reduce space further for small screens */
+            }
+
+            .navbar-toggler {
+                padding: 0.25rem 0.75rem; /* Adjust padding of the toggle button */
+            }
+
+            .navbar-brand {
+                font-size: 1.2rem; /* Smaller font size for navbar brand */
+            }
+
+            .welcome-message {
+                font-size: 1.5rem; /* Reduce welcome message font size on small screens */
+            }
         }
     </style>
 </head>
@@ -60,9 +95,9 @@
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="{{ url_for('home') }}">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="HomeGlam" class="homeglam-icon">
-            HomeGlam
+        <a href="{{ url_for('login') }}" class="navbar-brand text-light">
+            <img src="{{ url_for('static', filename='images/logo-title.png') }}" alt="HomeGlam" class="img-fluid"
+                style="height: 80px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -70,16 +105,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                    <a class="nav-link" href="">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('services') }}">Services</a>
+                    <a class="nav-link" href="">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('history') }}">History</a>
+                    <a class="nav-link" href="">History</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+                    <a class="nav-link" href="">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="">Logout</a>
                 </li>
             </ul>
         </div>
