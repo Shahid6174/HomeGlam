@@ -24,7 +24,8 @@
         }
 
         .register-container {
-            background: rgba(0, 0, 0, 0.6); /* Black transparent background */
+            background: rgba(0, 0, 0, 0.6);
+            /* Black transparent background */
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             padding: 40px;
@@ -33,7 +34,8 @@
             margin: auto;
             overflow-y: auto;
             height: 80vh;
-            color: white; /* Text color to white for contrast */
+            color: white;
+            /* Text color to white for contrast */
         }
 
         h1 {
@@ -45,7 +47,8 @@
         }
 
         .form-group label {
-            color: #fff; /* Label text color */
+            color: #fff;
+            /* Label text color */
             font-weight: bold;
             font-family: 'Montserrat', sans-serif;
         }
@@ -106,13 +109,16 @@
                     style="height: 60px;">
             </a>
         </nav>
-    </header>
-
-    <!-- Main Content -->
+    </header>    <!-- Main Content -->
     <div class="translucent-container d-flex justify-content-center align-items-center vh-100">
         <div class="register-container">
             <h1>Register as Customer</h1>
             <form action="" method="POST" enctype="multipart/form-data">
+                {% if message and status %}
+                <div class="alert alert-{{ status }}" role="alert">
+                    {{ message }}
+                </div>
+                {% endif %}
                 <div class="form-group">
                     <label for="name">Name*</label>
                     <input type="text" name="name" id="name" class="form-control" required>
@@ -141,7 +147,9 @@
                     <label for="profile_pic">Profile Picture*</label>
                     <input type="file" name="profile_pic" id="profile_pic" class="form-control">
                 </div>
+
                 <button type="submit" class="btn btn-primary">Register</button>
+
             </form>
         </div>
     </div>
