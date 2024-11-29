@@ -2,7 +2,7 @@
 
 {% block content %}
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a href="{{ url_for('login') }}" class="navbar-brand text-light">
+    <a href="{{ url_for('customer_dashboard') }}" class="navbar-brand text-light">
         <img src="{{ url_for('static', filename='images/logo-title.png') }}" alt="HomeGlam" class="img-fluid"
             style="height: 80px;">
     </a>
@@ -33,4 +33,5 @@
     <h2>Welcome to the Customer Dashboard, {{ session.get('username') }}!</h2>
     <p>We're glad to have you on board.</p>
 </div>
+
 {% endblock %}
