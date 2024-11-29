@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="welcome-container">
+    <div class="welcome-message">
+        <h2>Welcome to the Admin Dashboard, {{ session['name'] }}!</h2>
+        <p>You have the control to manage users and services.</p>
+    </div>
+</div>
+{% endblock %}

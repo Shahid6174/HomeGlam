@@ -190,24 +190,24 @@ def login_validation():
         return redirect(url_for("login"))
 
 
+@app.route('/admin_dashboard')
+def admin_dashboard():
+    if 'email' in session:
+        return render_template('admin_dashboard.html')
+    return redirect(url_for('login'))
+
+
 @app.route('/customer_dashboard')
 def customer_dashboard():
     if 'email' in session:
-        return "Welcome to the Customer Dashboard!"
+        return render_template('customer_dashboard.html')
     return redirect(url_for('login'))
 
 
 @app.route('/professional_dashboard')
 def professional_dashboard():
     if 'email' in session:
-        return "Welcome to the Professional Dashboard!"
-    return redirect(url_for('login'))
-
-
-@app.route('/admin_dashboard')
-def admin_dashboard():
-    if 'email' in session and session.get('role') == 'admin':
-        return "Welcome to the Admin Dashboard!"
+        return render_template('professional_dashboard.html')
     return redirect(url_for('login'))
 
 
