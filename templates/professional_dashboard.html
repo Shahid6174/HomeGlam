@@ -2,7 +2,7 @@
 
 {% block content %}
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a href="{{ url_for('login') }}" class="navbar-brand text-light">
+    <a href="{{ url_for('professional_dashboard') }}" class="navbar-brand text-light">
         <img src="{{ url_for('static', filename='images/logo-title.png') }}" alt="HomeGlam" class="img-fluid"
             style="height: 80px;">
     </a>
@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="">Home</a>
+                <a class="nav-link" href="{{ url_for('professional_dashboard') }}">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="">Services</a>
@@ -24,7 +24,7 @@
                 <a class="nav-link" href="{{url_for( 'professional_profile' )}}">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">Logout</a>
+                <a class="nav-link" href="{{ url_for('login') }}">Logout</a>
             </li>
         </ul>
     </div>

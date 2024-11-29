@@ -1,84 +1,116 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container my-5">
-    <h2 class="text-center">User Profile</h2>
+<div class="text-center mt-4">
+    {% if user.role == 'customer' %}
+    <a href="{{ url_for('customer_dashboard') }}" class="d-flex justify-content-start align-items-center">
+        <img src="{{ url_for('static', filename='images/logo-title-black.png') }}" alt="HomeGlam" class="img-fluid" style="height: 100px;">
+    </a>
+    {% elif user.role == 'admin' %}
+    <a href="{{ url_for('admin_dashboard') }}" class="d-flex justify-content-start align-items-center">
+        <img src="{{ url_for('static', filename='images/logo-title-black.png') }}" alt="HomeGlam" class="img-fluid" style="height: 100px;">
+    </a>
+    {% elif user.role == 'professional' %}
+    <a href="{{ url_for('professional_dashboard') }}" class="d-flex justify-content-start align-items-center">
+        <img src="{{ url_for('static', filename='images/logo-title-black.png') }}" alt="HomeGlam" class="img-fluid" style="height: 100px;">
+    </a>
+    {% endif %}
+</div>
+
+
+
+<div class="container my-5 bg-light-yellow">
+    <h2 class="text-center text-primary">User Profile</h2>
 
     <!-- Display current profile picture -->
-    <div class="text-center">
+    <div class="text-center mb-4">
         <img src="{{ url_for('static', filename='uploads/' + (user.profile_pic if user.profile_pic else 'images/default-profile.jpg')) }}"
             alt="Profile Picture" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
     </div>
 
     <!-- Profile Form -->
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" class="bg-light p-4 rounded shadow-sm">
         <!-- Disabled Name, Email, Phone fields -->
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name" class="text-purple">Name</label>
             <input type="text" class="form-control" id="name" value="{{ user.username }}" disabled>
         </div>
         <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email" class="text-purple">Email</label>
             <input type="email" class="form-control" id="email" value="{{ user.email }}" disabled>
         </div>
         <div class="form-group">
-            <label for="phone">Phone</label>
+            <label for="phone" class="text-purple">Phone</label>
             <input type="text" class="form-control" id="phone" name="phone" value="{{ user.phone }}">
         </div>
 
         <!-- Editable fields -->
         <div class="form-group">
-            <label for="address">Address</label>
+            <label for="address" class="text-purple">Address</label>
             <textarea class="form-control" id="address" name="address" rows="3">{{ user.address }}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="pincode">Pincode</label>
+            <label for="pincode" class="text-purple">Pincode</label>
             <input type="text" class="form-control" id="pincode" name="pincode" value="{{ user.pincode }}">
         </div>
 
         <!-- Display service expertise and experience for professionals -->
         {% if user.role == 'professional' %}
         <div class="form-group">
-            <label for="service_expertise">Service Expertise*</label>
+            <label for="service_expertise" class="text-purple">Service Expertise*</label>
             <select name="service_expertise" id="service_expertise" class="form-control" required>
-                <option value="Electrician" {% if user.service_expertise == 'Electrician' %}selected{% endif %}>Electrician</option>
-                <option value="Plumber" {% if user.service_expertise == 'Plumber' %}selected{% endif %}>Plumber</option>
-                <option value="Carpenter" {% if user.service_expertise == 'Carpenter' %}selected{% endif %}>Carpenter</option>
-                <option value="Painter" {% if user.service_expertise == 'Painter' %}selected{% endif %}>Painter</option>
-                <option value="Appliance Repair" {% if user.service_expertise == 'Appliance Repair' %}selected{% endif %}>Appliance Repair</option>
-                <option value="Pest Control" {% if user.service_expertise == 'Pest Control' %}selected{% endif %}>Pest Control</option>
-                <option value="Salon Services" {% if user.service_expertise == 'Salon Services' %}selected{% endif %}>Salon Services</option>
-                <option value="Spa Services" {% if user.service_expertise == 'Spa Services' %}selected{% endif %}>Spa Services</option>
-                <option value="House Cleaning" {% if user.service_expertise == 'House Cleaning' %}selected{% endif %}>House Cleaning</option>
-                <option value="Sofa & Carpet Cleaning" {% if user.service_expertise == 'Sofa & Carpet Cleaning' %}selected{% endif %}>Sofa & Carpet Cleaning</option>
-                <option value="Water Tank Cleaning" {% if user.service_expertise == 'Water Tank Cleaning' %}selected{% endif %}>Water Tank Cleaning</option>
-                <option value="Makeup Artist" {% if user.service_expertise == 'Makeup Artist' %}selected{% endif %}>Makeup Artist</option>
-                <option value="Mehendi Artist" {% if user.service_expertise == 'Mehendi Artist' %}selected{% endif %}>Mehendi Artist</option>
-                <option value="Fitness Trainer" {% if user.service_expertise == 'Fitness Trainer' %}selected{% endif %}>Fitness Trainer</option>
-                <option value="Gardener" {% if user.service_expertise == 'Gardener' %}selected{% endif %}>Gardener</option>
+                <option value="Electrician" {% if user.service_expertise=='Electrician' %}selected{% endif %}>
+                    Electrician</option>
+                <option value="Plumber" {% if user.service_expertise=='Plumber' %}selected{% endif %}>Plumber</option>
+                <option value="Carpenter" {% if user.service_expertise=='Carpenter' %}selected{% endif %}>Carpenter
+                </option>
+                <option value="Painter" {% if user.service_expertise=='Painter' %}selected{% endif %}>Painter</option>
+                <option value="Appliance Repair" {% if user.service_expertise=='Appliance Repair' %}selected{% endif %}>
+                    Appliance Repair</option>
+                <option value="Pest Control" {% if user.service_expertise=='Pest Control' %}selected{% endif %}>Pest
+                    Control</option>
+                <option value="Salon Services" {% if user.service_expertise=='Salon Services' %}selected{% endif %}>
+                    Salon Services</option>
+                <option value="Spa Services" {% if user.service_expertise=='Spa Services' %}selected{% endif %}>Spa
+                    Services</option>
+                <option value="House Cleaning" {% if user.service_expertise=='House Cleaning' %}selected{% endif %}>
+                    House Cleaning</option>
+                <option value="Sofa & Carpet Cleaning" {% if user.service_expertise=='Sofa & Carpet Cleaning'
+                    %}selected{% endif %}>Sofa & Carpet Cleaning</option>
+                <option value="Water Tank Cleaning" {% if user.service_expertise=='Water Tank Cleaning' %}selected{%
+                    endif %}>Water Tank Cleaning</option>
+                <option value="Makeup Artist" {% if user.service_expertise=='Makeup Artist' %}selected{% endif %}>Makeup
+                    Artist</option>
+                <option value="Mehendi Artist" {% if user.service_expertise=='Mehendi Artist' %}selected{% endif %}>
+                    Mehendi Artist</option>
+                <option value="Fitness Trainer" {% if user.service_expertise=='Fitness Trainer' %}selected{% endif %}>
+                    Fitness Trainer</option>
+                <option value="Gardener" {% if user.service_expertise=='Gardener' %}selected{% endif %}>Gardener
+                </option>
             </select>
         </div>
-    
+
         <!-- Experience -->
         <div class="form-group">
-            <label for="experience">Experience (years)*</label>
-            <input type="number" name="experience" id="experience" class="form-control" value="{{ user.experience }}" min="0" max="50" step="1" required>
+            <label for="experience" class="text-purple">Experience (years)*</label>
+            <input type="number" name="experience" id="experience" class="form-control" value="{{ user.experience }}"
+                min="0" max="50" step="1" required>
         </div>
-        
+
         <div class="form-group">
-            <label for="about">About</label>
+            <label for="about" class="text-purple">About</label>
             <textarea class="form-control" id="about" name="about" rows="3">{{ user.about }}</textarea>
         </div>
         {% endif %}
 
         <!-- Upload Profile Picture -->
         <div class="form-group">
-            <label for="profile_pic">Upload New Profile Picture</label>
+            <label for="profile_pic" class="text-purple">Upload New Profile Picture</label>
             <input type="file" class="form-control-file" id="profile_pic" name="profile_pic">
         </div>
 
-        <button type="submit" class="btn btn-primary">Update Profile</button>
+        <button type="submit" class="btn btn-primary btn-lg w-100 mt-3">Update Profile</button>
 
         <!-- Back to Dashboard Button -->
         <div class="text-center mt-4">
