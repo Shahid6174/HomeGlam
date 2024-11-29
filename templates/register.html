@@ -12,20 +12,19 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/logo.png') }}">
+
     <title>HomeGlam - Expert services, delivered to your home.</title>
 
     <style>
+        /* Custom responsive styling */
         h1 {
-            font-size: 6vw;
+            font-size: 6vw; /* Responsive text size based on viewport width */
         }
-
         @media (max-width: 768px) {
             .card {
-                margin-top: 1rem;
-            }
-
-            .mt-100 {
-                margin-top: 2rem;
+                margin-top: 1rem; /* Reduce margin on smaller screens */
             }
         }
     </style>
@@ -33,12 +32,11 @@
 
 <body class="bg-nav">
 
-    <!-- Header Section -->
+    <!-- Header -->
     <header class="header">
         <nav class="navbar">
             <a href="" class="navbar-brand text-light">
-                <img src="{{ url_for('static', filename='images/logo-title.png') }}" alt="HomeGlam" class="img-fluid"
-                    style="height: 80px;">
+                <img src="{{ url_for('static', filename='images/logo-title.png') }}" alt="HomeGlam" class="img-fluid" style="height: 80px;">
             </a>
         </nav>
     </header>
@@ -46,66 +44,31 @@
     <!-- Main Content -->
     <div class="translucent-container d-flex justify-content-center align-items-center vh-100">
         <div class="container">
-            <div class="row">
-                <!-- Left Column for Heading -->
-                <div class="col-md-8 col-sm-12 mt-4 text-center text-md-left">
-                    <h1 class=" text-light display-4 mt-14" style="font-family:Poppins;">
-                        Elevate Your Space, Enhance Your Beauty with HomeGlam.
-                    </h1>
-                </div>
-
-                <!-- Right Column for Registration Form -->
-                <div class="col-md-4 col-sm-12">
-                    <div class="card mt-md-5 mt-3">
-                        <div class="card-body" style="font-family: Montserrat;">
-                            <h2>Register</h2>
-                            <form action="{{ url_for('reg_validation') }}" class="mt-3 form" method="post">
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name" required>
-                                </div>
-                            
-                                <div class="form-group">
-                                    <label for="role">Role</label>
-                                    <select name="role" id="role" class="form-control" required>
-                                        <option value="" disabled selected>Select your role</option>
-                                        <option value="customer">Customer</option>
-                                        <option value="professional">Professional</option>
-                                    </select>
-                                </div>
-                            
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
-                                </div>
-                            
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" required>
-                                </div>
-                            
-                                <div class="form-group">
-                                    <label for="confirm_password">Confirm Password</label>
-                                    <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm password" required>
-                                </div>
-                            
-                                <input type="submit" class="btn btn-primary btn-block btn-lg" value="Sign Up">
-                            </form>
-                                                      
-
-                            {% if error %}
-                            <div class="alert alert-danger mt-3">{{ error }}</div>
-                            {% endif %}
-
-                            <p class="mt-2">Already registered? <a href="/">Login</a></p>
+            <h1 class="text-center text-light display-4 mt-10" style="font-family: Poppins;">Choose Your Role</h1>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <a href="{{ url_for('register_customer') }}">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h3>Customer</h3>
+                            </div>
                         </div>
-                    </div>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="{{ url_for('register_professional') }}">
+                        <div class="card text-center">
+                            <div class="card-body">
+                                <h3>Professional</h3>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap and jQuery JS -->
+    <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
