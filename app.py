@@ -213,6 +213,94 @@ def professional_dashboard():
     return redirect(url_for('login'))
 
 
+
+
+@app.route('/customer_dashboard/profile', methods=["GET", "POST"])
+def customer_profile():
+    if 'email' not in session or session.get("role") != "customer":
+        return redirect(url_for('login'))
+
+    user = User.query.filter_by(email=session['email']).first()
+    
+    if request.method == "POST":
+        # Handle profile update (excluding name, email, phone)
+        user.address = request.form.get('address')
+        user.phone = request.form.get('phone')
+        user.pincode = request.form.get('pincode') 
+
+        profile_pic = request.files.get('profile_pic')
+        if profile_pic and profile_pic.filename:
+            filename = secure_filename(profile_pic.filename)
+            profile_pic.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            user.profile_pic = filename
+
+        db.session.commit()
+        session["message"] = "Profile updated successfully!"
+        session["status"] = "success"
+        return redirect(url_for('customer_profile'))
+
+    return render_template('profile.html', user=user)
+
+@app.route('/professional_dashboard/profile', methods=["GET", "POST"])
+def professional_profile():
+    if 'email' not in session or session.get("role") != "professional":
+        return redirect(url_for('login'))  # Redirect to login if the role is not professional
+
+    user = User.query.filter_by(email=session['email']).first()
+
+    if request.method == "POST":
+        user.address = request.form.get('address')
+        user.phone = request.form.get('phone')
+        user.pincode = request.form.get('pincode')  # Update pincode
+        user.service_expertise = request.form.get('service_expertise')  # Update service expertise
+        user.experience = request.form.get('experience')  # Update experience level
+        user.about = request.form.get('about')  # Update about section
+
+
+        profile_pic = request.files.get('profile_pic')
+        if profile_pic and profile_pic.filename:
+            filename = secure_filename(profile_pic.filename)
+            profile_pic.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            user.profile_pic = filename
+
+        db.session.commit()
+        session["message"] = "Profile updated successfully!"
+        session["status"] = "success"
+        return redirect(url_for('professional_profile'))  # Redirect after successful update
+
+    return render_template('profile.html', user=user)
+
+
+@app.route('/admin_dashboard/profile', methods=["GET", "POST"])
+def admin_profile():
+    if 'email' not in session or session.get("role") != "admin":
+        return redirect(url_for('login'))  # Redirect to login if the role is not admin
+
+    user = User.query.filter_by(email=session['email']).first()
+
+    if request.method == "POST":
+        # Update fields for admin
+        user.address = request.form.get('address')
+        user.phone = request.form.get('phone')
+        user.pincode = request.form.get('pincode')  # Update pincode
+        user.about = request.form.get('about')  # Update about section
+
+        # Profile picture upload
+        profile_pic = request.files.get('profile_pic')
+        if profile_pic and profile_pic.filename:
+            filename = secure_filename(profile_pic.filename)
+            profile_pic.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            user.profile_pic = filename
+
+        db.session.commit()
+        session["message"] = "Profile updated successfully!"
+        session["status"] = "success"
+        return redirect(url_for('admin_profile'))  # Redirect after successful update
+
+    return render_template('profile.html', user=user)
+
+
+
 # Run the app
 if __name__ == "__main__":
     with app.app_context():
