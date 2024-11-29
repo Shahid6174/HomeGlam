@@ -212,9 +212,6 @@ def professional_dashboard():
         return render_template('professional_dashboard.html')
     return redirect(url_for('login'))
 
-
-
-
 @app.route('/customer_dashboard/profile', methods=["GET", "POST"])
 def customer_profile():
     if 'email' not in session or session.get("role") != "customer":
